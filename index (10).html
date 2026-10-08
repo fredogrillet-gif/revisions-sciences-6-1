@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mission Station Météo – Révisions 6e Physique-Chimie</title>
+<style>
+:root{--b:#fbfaf4;--t:#16263a;--c:#1f6fd1;--s:#e6eefb;--h:#ffe46b}
+@media(prefers-color-scheme:dark){:root{--b:#101b2a;--t:#eaf0f7;--c:#6aa8ff;--s:#1c2e46;--h:#8a7a1d}}
+body{margin:0;background:var(--b);color:var(--t);font:17px/1.55 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:auto;padding:16px}
+h1,h2,button,select,input,.top,.ch{font-family:"Trebuchet MS",system-ui,sans-serif}
+h1{font-size:28px;line-height:1.2;background:linear-gradient(transparent 62%,var(--h) 62%);display:inline}
+h2{font-size:15px;margin:18px 0 4px;color:var(--c)}
+button{font-size:16px;padding:10px 16px;border-radius:10px;border:2px solid var(--c);background:var(--s);color:var(--t);cursor:pointer;margin:4px 4px 4px 0}
+button:focus-visible,select:focus-visible,input:focus-visible,.ch:focus-visible{outline:3px solid var(--h);outline-offset:2px}
+button.g{background:var(--c);color:#fff;font-weight:700}
+.o{display:block;width:100%;text-align:left}
+.on{background:var(--c)!important;color:#fff!important}
+.top{display:flex;justify-content:space-between;font-size:14px}
+.bar{height:8px;background:var(--s);border-radius:4px}
+.bar i{display:block;height:100%;background:var(--c);border-radius:4px}
+.q{font-weight:700;font-size:19px}
+.card{background:var(--s);padding:4px 16px;border-left:6px solid var(--c)}
+select,input{font-size:16px;padding:6px;border-radius:8px;border:2px solid var(--c);background:var(--b);color:var(--t)}
+.r{display:flex;gap:8px;align-items:center;margin:6px 0;flex-wrap:wrap}
+.r span{min-width:160px}
+.pool,.zz{display:flex;flex-wrap:wrap;gap:8px;min-height:48px}
+.ch{display:inline-flex;flex-direction:column;align-items:center;padding:6px 10px;border:2px solid var(--c);border-radius:10px;background:var(--s);cursor:pointer;font-size:32px}
+.ch small{font-size:12px}
+.ch.t{font-size:15px;flex-direction:row}
+.zs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:10px}
+.z{border:2px dashed var(--c);border-radius:12px;padding:8px}
+.z b{font-size:14px;font-family:"Trebuchet MS",sans-serif}
+.big{font-size:30px;font-weight:700}
+#fb{min-height:1.5em}
+body{background:radial-gradient(circle at 0 0,var(--h) 0,transparent 22%),radial-gradient(circle at 100% 30%,var(--s) 0,transparent 45%),var(--b);min-height:100vh}
+.hero{font-size:68px;text-align:center;line-height:1.2;animation:bob 2.4s ease-in-out infinite}
+.panel{background:var(--b);border:3px solid var(--c);border-radius:18px;padding:6px 18px 14px;box-shadow:6px 6px 0 var(--c);margin:8px 6px 14px 0}
+.panel .hero{font-size:54px}
+.o,.lv{transition:transform .12s}.o:hover,.lv:hover{transform:translateY(-2px)}
+.lv{display:block;width:100%;text-align:left;margin:10px 0;padding:14px 18px;font-size:18px}.lv small{display:block;font-weight:400;font-size:14px}
+.bar{height:12px;border:2px solid var(--c)}.bar i{position:relative;transition:width .5s}.bar i::after{content:'🚀';position:absolute;right:-10px;top:-17px;font-size:22px}
+.bar2{display:block;height:12px;background:var(--s);border-radius:6px}.bar2 i{display:block;height:100%;background:var(--c);border-radius:6px}
+.ok{animation:pop .5s}.ko{animation:sh .4s}
+.cf{position:fixed;top:-40px;font-size:26px;pointer-events:none;animation:fall 1.8s linear forwards;z-index:9}
+@keyframes bob{50%{transform:translateY(-8px)}}@keyframes pop{40%{transform:scale(1.03);box-shadow:0 0 0 8px var(--h)}}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}@keyframes fall{to{transform:translateY(112vh) rotate(420deg)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const Q=(q,o,a,e)=>({t:'q',q,o,a,e}),N=(q,a,u,e)=>({t:'n',q,a,u,e}),M=(q,p,e)=>({t:'m',q,p,e}),
+D=(q,it,z,e)=>({t:'d',q,it,z,e}),F=(q,tx,o,a,e)=>({t:'f',q,tx,o,a,e}),O=(q,a,e)=>({t:'s',q,a,e});
+const A="<svg viewBox='0 0 100 60' width='130' style='display:block'><path d='M15 50A35 35 0 0 1 85 50' fill='none' stroke='#1f6fd1' stroke-width='4'/></svg>",
+W="<svg viewBox='0 0 130 40' width='170' style='display:block'><path d='M5 20Q20 0 35 20T65 20T95 20T125 20' fill='none' stroke='#1f6fd1' stroke-width='4'/></svg>",
+MV=["rectiligne","circulaire","quelconque"],RC=["Rectiligne","Circulaire","Quelconque"],
+SV=d=>"<svg viewBox='0 0 60 40' width='64'><path d='"+d+"' fill='none' stroke='#8a4fd8' stroke-width='4'/></svg>",
+P=n=>"<svg viewBox='0 0 60 60' width='72' style='display:block'><circle cx='30' cy='30' r='26' fill='#fff' stroke='#d9232d' stroke-width='7'/><text x='30' y='38' font-size='24' font-weight='700' text-anchor='middle' fill='#111'>"+n+"</text></svg>",
+U=(i,l,q,o,a,e)=>({t:'q',i,l,q,o,a,e}),V=(i,l,q,a,u,h)=>({t:'n',i,l,q,a,u,h});
+const S=[
+{n:"Station 1 : météo et grandeurs",c:'#1f8fd1',g:'🌦️',r:"Une <mark>grandeur</mark> est une propriété que l'on peut mesurer ou calculer. Un résultat s'écrit : grandeur = valeur + unité. <b>Mesurer</b> : avec un instrument. <b>Calculer</b> : avec des opérations. Anticyclone = beau temps ; dépression = mauvais temps. La météorologie étudie une zone réduite à court terme, la climatologie une zone étendue à long terme.",i:[
+Q("Qu'est-ce qu'une grandeur physique ?",["Une propriété que l'on peut mesurer ou calculer","Le nom d'un instrument","Une unité comme le mètre"],0),
+M("Associe chaque instrument à ce qu'il mesure.",[["Thermomètre","la température"],["Girouette","la direction du vent"],["Anémomètre","la vitesse du vent"],["Pluviomètre","la hauteur de pluie"],["Baromètre","la pression de l'air"],["Hygromètre","l'humidité de l'air"]]),
+M("Associe chaque grandeur à son unité.",[["Température","°C"],["Vitesse du vent","km/h"],["Hauteur de pluie","mm"],["Pression de l'air","hPa"],["Humidité de l'air","%"]]),
+D("Place chaque instrument sous la grandeur qu'il mesure.",[["🌡️","thermomètre",0],["🌧️","pluviomètre",1],["💨","anémomètre",2],["🧭","girouette",3]],["Température","Pluie","Vitesse du vent","Direction du vent"]),
+Q("Quel est l'intrus : thermomètre, anémomètre, girouette, pluviomètre ?",["thermomètre","anémomètre","girouette","pluviomètre"],2,"La girouette donne des mots (Nord, Est…), pas de valeur chiffrée ni d'unité."),
+Q("Le kilogramme (kg) est…",["une grandeur","une unité","un instrument"],1,"La grandeur correspondante est la masse."),
+F("Distance d = 35 km. Complète.","d est la ___, 35 est la ___ et km est l'___.",["grandeur","valeur","unité"],["grandeur","valeur","unité"]),
+Q("Relever 18 °C avec un thermomètre, c'est…",["mesurer","calculer"],0,"Mesurer = évaluer avec un instrument."),
+Q("Additionner deux longueurs, c'est…",["mesurer","calculer"],1,"Calculer = utiliser des règles de transformation (additionner, multiplier…)."),
+Q("Quel temps fait-il avec un anticyclone ?",["beau temps","mauvais temps"],0),
+Q("À Milan, il y a une dépression. Que prévois-tu ?",["beau temps","mauvais temps"],1),
+Q("Quelle science étudie le temps sur une zone réduite et à court terme ?",["la météorologie","la climatologie"],0,"La climatologie étudie une zone étendue sur le long terme (au-delà d'un an)."),
+Q("« Veau = 0,2 L » signifie…",["le volume d'eau est de 0,2 litre","0,2 est l'unité","L est la grandeur"],0),
+Q("Un résultat en physique s'écrit toujours avec…",["son unité","un schéma","une image"],0,"Sans unité, un résultat n'a pas de sens."),
+U("🌧️",1,"Il a plu toute la nuit. Quel instrument mesure la hauteur d'eau tombée ?",["le pluviomètre","le thermomètre","la girouette"],0),
+U("⛵",1,"Un marin veut connaître la vitesse du vent. Quel instrument utilise-t-il ?",["l'anémomètre","le baromètre","l'hygromètre"],0),
+D("Grandeur ou unité ? Classe chaque mot.",[["⚖️","masse",0],["🏋️","kilogramme",1],["⏱️","durée",0],["⏲️","seconde",1],["📏","longueur",0],["🧵","mètre",1],["🌡️","température",0],["🔥","degré Celsius",1]],["Une grandeur","Une unité"]),
+V("🌧️",2,"Il est tombé 12 mm de pluie hier et 8 mm aujourd'hui. Combien en tout ?",20,"mm","On additionne : c'est un calcul."),
+V("🌡️",2,"Il fait 7 °C le matin et 19 °C l'après-midi. De combien la température a-t-elle augmenté ?",12,"°C","On soustrait : 19 − 7."),
+F("Complète.","La ___ étudie le temps qu'il fait sur une zone ___ à court terme.",["météorologie","climatologie","réduite","étendue"],["météorologie","réduite"]),
+V("📏",3,"Un pluviomètre indique 0,5 cm de pluie. Convertis en millimètres.",5,"mm","1 cm = 10 mm")]},
+{n:"Station 2 : trajectoires",c:'#8a4fd8',g:'🎢',r:"La <mark>trajectoire</mark> est l'ensemble des positions occupées au cours du temps par un objet qui se déplace. Droite ou segment de droite : mouvement <b>rectiligne</b>. Cercle ou arc de cercle : mouvement <b>circulaire</b>. Autre courbe : mouvement <b>quelconque</b>.",i:[
+Q("La trajectoire d'un objet, c'est…",["l'ensemble des positions occupées au cours du temps","sa vitesse","sa masse"],0),
+Q("Que montrent les traces d'un skieur dans la neige ?",["sa trajectoire","sa vitesse","sa masse"],0),
+D("Classe chaque objet selon le mouvement de sa trajectoire.",[["🛗","ascenseur",0],["🎡","grande roue",1],["🎢","montagnes russes",2],["🎿","skieur en zigzag",2],["🌀","essoreuse à salade",1],["📏","trait tracé à la règle",0],["🏇","chevaux au manège",1]],RC),
+M("Associe la forme de la trajectoire au mouvement.",[["une droite","rectiligne"],["un segment de droite","rectiligne"],["un cercle","circulaire"],["une courbe qui n'est pas un cercle","quelconque"]]),
+F("Complète le cours.","Si la trajectoire est un cercle ou un ___ de cercle, alors le mouvement est ___.",["arc","rectiligne","circulaire","quelconque"],["arc","circulaire"]),
+Q(A+"Cette trajectoire est un arc de cercle. Le mouvement est…",MV,1),
+Q(W+"Cette trajectoire est une courbe qui n'est pas un cercle. Le mouvement est…",MV,2),
+Q("Le siège d'un ascenseur à sensations monte et descend. Son mouvement est…",MV,0),
+Q("La nacelle d'une grande roue a un mouvement…",MV,1),
+Q("Un wagon de montagnes russes a un mouvement…",MV,2),
+Q("Vrai ou faux : la trajectoire d'un objet est toujours une droite.",["Vrai","Faux"],1),
+Q("Le bout de la trotteuse d'une horloge a un mouvement…",MV,1),
+Q("Une voiture roule sur une route toute droite. Son mouvement est…",MV,0),
+Q("Pour décrire le mouvement d'un objet, on étudie d'abord…",["sa trajectoire","sa couleur","sa masse"],0),
+Q("Lequel de ces mouvements est rectiligne ?",["Une pierre lâchée qui tombe tout droit","Le tour d'un manège","Un skieur qui fait des virages"],0),
+D("Classe chaque tracé selon le mouvement qu'il décrit.",[[SV("M5 20H55"),"droite",0],[SV("M10 35L50 5"),"segment",0],[SV("M10 30A25 25 0 0 1 50 30"),"arc de cercle",1],[SV("M30 5a15 15 0 1 0 .1 0"),"cercle",1],[SV("M5 20Q20 0 30 20T55 20"),"vague",2],[SV("M5 35L20 5L35 35L50 5"),"zigzag",2]],RC),
+U("🏀",2,"Un ballon de basket est lancé vers le panier. Sa trajectoire est une courbe qui n'est pas un cercle. Son mouvement est…",MV,2),
+U("🚆",1,"Un train roule sur une voie toute droite. Son mouvement est…",MV,0),
+U("🚴",3,"Un cycliste roule tout droit, fait le tour d'un rond-point, puis repart tout droit. Sur l'ensemble du trajet, son mouvement est…",MV,2,"Ni une droite, ni un cercle : sur tout le trajet, c'est un mouvement quelconque.")]},
+{n:"Station 3 : la vitesse",c:'#e8590c',g:'🏎️',r:"<b>Vitesse = distance ÷ temps</b>. Unité légale : m/s. Unité usuelle : km/h. Pour la vitesse moyenne, on mesure une distance (mètre ruban) et un temps (chronomètre). Méthode en 5 étapes : lire et surligner, formule littérale, conversions, application numérique, résultat encadré avec son unité.",i:[
+Q("L'unité légale de la vitesse est…",["m/s","km/h","m"],0),
+Q("Sur un panneau, « 90 » signifie…",["90 km/h","90 m","90 minutes"],0,"Les panneaux de limitation sont en kilomètres par heure."),
+M("Associe chaque objet ou animal à sa vitesse moyenne.",[["Escargot","6 cm/min"],["Marcheur","4 km/h"],["Serpent","12 km/h"],["Cheval au galop","21 km/h"],["Voiture sur autoroute","120 km/h"],["TGV","300 km/h"],["Avion","850 km/h"],["Fusée","40 000 km/h"]]),
+D("Classe chacun selon sa vitesse moyenne.",[["🐌","escargot",0],["🚶","marcheur",0],["🐍","serpent",0],["🐎","cheval au galop",1],["🚗","voiture",1],["🚄","TGV",2],["✈️","avion",2],["🚀","fusée",2]],["Lent (moins de 15 km/h)","Moyen (15 à 150 km/h)","Très rapide (plus de 150 km/h)"]),
+F("Complète.","La vitesse s'exprime toujours en « unité de ___ » par « unité de ___ ».",["longueur","temps","masse"],["longueur","temps"]),
+Q("Quelle formule donne la vitesse ?",["v = d ÷ t","v = d × t","v = t ÷ d"],0),
+Q("Pour déterminer expérimentalement une vitesse moyenne, on réalise…",["une mesure de distance et une mesure de temps","une mesure avec un appareil à vitesse","une mesure de masse"],0,"Il n'existe pas d'appareil de mesure pour la vitesse moyenne."),
+M("Associe chaque grandeur à son instrument.",[["Distance","le mètre ruban"],["Temps","le chronomètre"]]),
+O("Remets les 5 étapes de résolution dans l'ordre.",["Lire l'énoncé et surligner les données","Écrire la formule littérale","Faire les conversions nécessaires","Faire l'application numérique","Donner le résultat avec son unité, encadré"]),
+N("Une voiture parcourt 125 km en 2 h. Calcule sa vitesse.",62.5,"km/h","v = 125 ÷ 2"),
+N("Un cycliste parcourt 45 km en 1,5 h. Calcule sa vitesse.",30,"km/h","v = 45 ÷ 1,5"),
+N("Un train parcourt 600 km en 2 h. Calcule sa vitesse.",300,"km/h","v = 600 ÷ 2"),
+N("Un coureur parcourt 100 m en 20 s. Calcule sa vitesse.",5,"m/s","v = 100 ÷ 20"),
+N("Un bus parcourt 90 km en 1,5 h. Calcule sa vitesse.",60,"km/h","v = 90 ÷ 1,5"),
+N("Un marcheur parcourt 12 km en 3 h. Calcule sa vitesse.",4,"km/h","v = 12 ÷ 3"),
+N("Un avion parcourt 1 700 km en 2 h. Calcule sa vitesse.",850,"km/h","v = 1700 ÷ 2"),
+N("Conversion : 3 h = … minutes",180,"min","1 h = 60 min"),
+N("Conversion : 2 km = … m",2000,"m","1 km = 1000 m"),
+N("Un escargot avance à 6 cm par minute. Quelle distance parcourt-il en 10 minutes ?",60,"cm","6 × 10"),
+N("Défi : un TGV roule à 300 km/h pendant 2 h. Quelle distance parcourt-il ?",600,"km","d = v × t"),
+Q("Quand la vitesse reste constante, le mouvement est…",["uniforme","rectiligne","circulaire"],0),
+Q("Un objet parcourt 50 km en 2 h. Quelle est la bonne rédaction ?",["v = 50 ÷ 2 = 25 km/h","v = 50 × 2 = 100 km/h","v = 2 ÷ 50 = 0,04 km/h"],0),
+U("🚦",1,P(50)+"Que signifie ce panneau ?",["vitesse limitée à 50 km/h","50 mètres avant un virage","il faut rouler pendant 50 minutes"],0),
+O("Classe du plus lent au plus rapide.",["🐌 escargot","🚶 marcheur","🐎 cheval au galop","🚗 voiture","🚄 TGV","✈️ avion","🚀 fusée"]),
+V("🏃",1,"Un sprinteur parcourt 100 m en 10 s. Quelle est sa vitesse ?",10,"m/s","v = d ÷ t = 100 ÷ 10"),
+V("🚄",1,"Un TGV parcourt 460 km en 2 h. Quelle est sa vitesse ?",230,"km/h","460 ÷ 2"),
+V("🏊",1,"Une nageuse parcourt 50 m en 25 s. Quelle est sa vitesse ?",2,"m/s","50 ÷ 25"),
+V("🐢",1,"Une tortue parcourt 10 m en 5 min. Quelle est sa vitesse ?",2,"m/min","10 ÷ 5"),
+V("🚴",2,"Un coureur du Tour de France parcourt 180 km en 4 h. Quelle est sa vitesse moyenne ?",45,"km/h","180 ÷ 4"),
+V("⛵",2,"Un voilier parcourt 60 km en 3 h. Quelle est sa vitesse ?",20,"km/h","60 ÷ 3"),
+V("✈️",2,"Un avion relie Paris à Marseille : 750 km en 1,5 h. Quelle est sa vitesse ?",500,"km/h","750 ÷ 1,5"),
+V("🐆",2,"Un guépard parcourt 300 m en 10 s. Quelle est sa vitesse ?",30,"m/s","300 ÷ 10"),
+V("🥾",2,"Un randonneur marche à 4 km/h pendant 3 h. Quelle distance parcourt-il ?",12,"km","d = v × t"),
+V("🚗",2,"Une voiture roule à 90 km/h pendant 2 h. Quelle distance parcourt-elle ?",180,"km","d = v × t"),
+V("🕐",2,"Convertis : 90 min = … h",1.5,"h","60 min = 1 h"),
+V("⏱️",1,"Convertis : 2 min = … s",120,"s","1 min = 60 s"),
+V("📏",2,"Convertis : 3 000 m = … km",3,"km","1 km = 1 000 m"),
+V("🚶",3,"Léa marche 3 km en 30 min. Quelle est sa vitesse en km/h ?",6,"km/h","Convertis d'abord : 30 min = 0,5 h"),
+V("🚌",3,"Un bus parcourt 15 km en 20 min. Quelle est sa vitesse en km/h ?",45,"km/h","En 1 h, il y a 3 fois 20 min."),
+V("🚗",3,"Une voiture roule à 80 km/h pendant 1,5 h. Quelle distance parcourt-elle ?",120,"km","d = v × t = 80 × 1,5"),
+V("🛣️",3,"Un camion doit faire 180 km à 90 km/h. Combien de temps met-il ?",2,"h","t = d ÷ v"),
+U("🏁",2,"Course de 100 m. Ana : 12 s. Ben : 10 s. Chloé : 11 s. Qui est le plus rapide ?",["Ben","Ana","Chloé"],0,"Même distance : la durée la plus courte gagne."),
+U("📸",2,"Un automobiliste parcourt 135 km en 1,5 h sur une route limitée à 80 km/h. Respecte-t-il la limite ?",["Non : il roule à 90 km/h","Oui : il roule à 70 km/h","Oui : il roule à 80 km/h"],0,"135 ÷ 1,5 = 90 km/h, donc au-dessus de 80."),
+U("🕵️",3,"Tom écrit : « Une voiture parcourt 120 km en 2 h : v = 120 × 2 = 240 km/h ». Quelle est son erreur ?",["Il a multiplié au lieu de diviser","Il a oublié de convertir","Il n'y a pas d'erreur"],0,"Il fallait faire 120 ÷ 2 = 60 km/h.")]}
+];
+const $=s=>document.querySelector(s),sh=a=>[...a].sort(()=>Math.random()-.5),app=$('#app'),KEY='rev6e';
+let L=[],k=0,pts=0,sc={},tr=0,chk,done,iv=-1,lv=2,st=0,hu=0;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify({k,pts,sc,lv}))}catch(e){}},
+load=()=>{try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}};
+const OKM=["Génial !","Bravo !","Excellent !","Tu gères !","Top !","Quel talent !"],KOM=["Pas tout à fait…","Presque !","Oups !"],
+LV={1:[1,2],2:[1,2,3],3:[2,3]},LN={1:"🟢 Explorateur",2:"🟡 Pilote",3:"🔴 Expert"},rnd=a=>a[Math.floor(Math.random()*a.length)];
+function build(){L=[];S.forEach(s=>{let f=1;s.i.filter(x=>LV[lv].includes(x.l||2)).forEach(x=>{L.push({...x,s,first:f});f=0})})}
+function boom(n){for(let i=0;i<n;i++){const e=document.createElement('span');e.className='cf';e.textContent=['🎉','⭐','✨','🎈','🚀'][i%5];e.style.left=Math.random()*100+'vw';e.style.animationDelay=Math.random()*.5+'s';document.body.append(e);setTimeout(()=>e.remove(),2500)}}
+function home(){const v=load();document.body.style.removeProperty('--c');app.innerHTML=`<div class="hero">🌦️🚀🧪</div><h1>Mission Station Météo</h1><p>Révisions de physique-chimie en 6e : météo et grandeurs, trajectoires, vitesse. Choisis ton niveau :</p>${[1,2,3].map(l=>`<button class="lv" onclick="start(0,${l})"><b>${LN[l]}</b><small>${["Défis accessibles, indices gratuits","Tous les défis, indices à moitié de points","Défis difficiles, sans indice"][l-1]}</small></button>`).join('')}${v&&v.k>0?`<p><button onclick="start(1)">Reprendre ma partie (${LN[v.lv||2]}, défi ${v.k+1})</button></p>`:''}<p><small>Sur téléphone : touche un objet puis touche sa case. Enchaîne les bonnes réponses pour garder ta série 🔥</small></p>`}
+function start(r,l){if(r){const v=load();lv=v.lv||2;build();k=v.k;pts=v.pts;sc=v.sc}else{lv=l;build();k=0;pts=0;sc={}}st=0;iv=-1;step()}
+function step(){if(k>=L.length)return end();const x=L[k];document.body.style.setProperty('--c',x.s.c);if(x.first&&iv!=k){iv=k;app.innerHTML=`<div class="hero">${x.s.g}</div><h1>${x.s.n}</h1><h2>Je retiens</h2><div class="card"><p>${x.s.r}</p></div><p><button class="g" onclick="step()">C'est parti !</button></p>`;return}show(x)}
+function show(x){tr=0;done=0;hu=0;app.innerHTML=`<div class="top"><span>${x.s.g} ${x.s.n}</span><span>🔥 ${st} · ⭐ ${pts}</span></div><div class="bar"><i style="width:${Math.max(4,k/L.length*100)}%"></i></div><h2>Défi ${k+1} sur ${L.length}</h2><div class="panel" id="pn">${x.i?`<div class="hero">${x.i}</div>`:''}<p class="q">${x.q}</p><div id="w"></div></div><p id="fb"></p><button class="g" id="ok" onclick="val()">Valider</button>${lv<3&&(x.h||x.t=='n'&&x.e)?'<button id="hb" onclick="hint()">💡 Indice</button>':''}`;chk=widget(x,$('#w'))}
+function hint(){const x=L[k];$('#fb').innerHTML='💡 '+(x.h||x.e);hu=lv>1?1:0}
+const rev=x=>({q:()=>x.o[x.a],n:()=>x.a+' '+x.u,m:()=>x.p.map(p=>p.join(' → ')).join(' ; '),f:()=>x.a.join(' · '),s:()=>x.a.join(' ➜ '),d:()=>x.it.map(i=>i[0]+' '+x.z[i[2]]).join(' ; ')})[x.t]();
+function fin(){done=1;$('#w').style.pointerEvents='none';const h=$('#hb');h&&h.remove();$('#ok').textContent=k+1<L.length?'Suivant ➜':'Voir mes résultats'}
+function val(){const x=L[k],fb=$('#fb'),pn=$('#pn');if(done){k++;save();return step()}const r=chk();if(r===null){fb.textContent='Complète ta réponse avant de valider.';return}
+pn.classList.remove('ok','ko');void pn.offsetWidth;
+if(r){let p=tr?5:10;if(hu)p=Math.ceil(p/2);pts+=p;st++;sc[x.s.n]=(sc[x.s.n]||0)+p;pn.classList.add('ok');boom(st>2?32:14);fb.innerHTML=`<b>${rnd(OKM)}</b> +${p} points ${st>2?'🔥 série de '+st:''} ${x.e||x.h||''}`;fin()}
+else{st=0;pn.classList.add('ko');if(!tr++){fb.textContent='❌ '+rnd(KOM)+' Relis bien et réessaie.'}else{fb.innerHTML='❌ La réponse était : <b>'+rev(x)+'</b>. '+(x.e||x.h||'');fin()}}}
+function widget(x,b){const t=x.t;
+if(t=='q'){let s=-1;b.innerHTML=sh(x.o.map((o,i)=>i)).map(i=>`<button class="o" data-i="${i}">${x.o[i]}</button>`).join('');b.onclick=e=>{const c=e.target.closest('.o');if(c){s=+c.dataset.i;[...b.children].forEach(y=>y.classList.toggle('on',y==c))}};return()=>s<0?null:s==x.a}
+if(t=='n'){b.innerHTML=`<input id="in" inputmode="decimal" autocomplete="off" size="8" aria-label="Ta réponse"> <b>${x.u}</b>`;const i=$('#in');i.onkeydown=e=>e.key=='Enter'&&val();i.focus();return()=>{const v=parseFloat(i.value.replace(',','.'));return isNaN(v)?null:Math.abs(v-x.a)<1e-6}}
+if(t=='m'){const R=sh([...new Set(x.p.map(p=>p[1]))]);b.innerHTML=x.p.map(p=>`<div class="r"><span>${p[0]}</span><select><option value="">?</option>${R.map(r=>`<option>${r}</option>`).join('')}</select></div>`).join('');return()=>{const Z=[...b.querySelectorAll('select')];return Z.some(s=>!s.value)?null:Z.every((s,i)=>s.value==x.p[i][1])}}
+if(t=='f'){const o=sh(x.o);b.innerHTML='<p>'+x.tx.replace(/___/g,()=>`<select><option value="">?</option>${o.map(v=>`<option>${v}</option>`).join('')}</select>`)+'</p>';return()=>{const Z=[...b.querySelectorAll('select')];return Z.some(s=>!s.value)?null:Z.every((s,i)=>s.value==x.a[i])}}
+if(t=='s'){b.innerHTML=`<div class="pool">${sh(x.a).map(a=>`<span class="ch t" tabindex="0">${a}</span>`).join('')}</div><p><b>Ton ordre :</b></p><div class="pool sq" style="flex-direction:column"></div>`;const P=b.firstChild,Q2=b.lastChild;const mv=e=>{const c=e.target.closest('.ch');if(c)(c.parentNode==P?Q2:P).append(c)};b.onclick=mv;b.onkeydown=e=>e.key=='Enter'&&mv(e);return()=>P.children.length?null:[...Q2.children].every((c,i)=>c.textContent==x.a[i])}
+if(t=='d'){let sel=null,dr=null;b.innerHTML=`<div class="pool">${sh(x.it).map(i=>`<span class="ch" draggable="true" data-z="${i[2]}">${i[0]}<small>${i[1]}</small></span>`).join('')}</div><div class="zs">${x.z.map(z=>`<div class="z"><b>${z}</b><div class="zz"></div></div>`).join('')}</div>`;const P=b.firstChild;
+b.onclick=e=>{const c=e.target.closest('.ch');if(c){if(c.parentNode.classList.contains('zz')){P.append(c);return}sel&&sel.classList.remove('on');sel=c;c.classList.add('on');return}const z=e.target.closest('.z');if(z&&sel){z.querySelector('.zz').append(sel);sel.classList.remove('on');sel=null}};
+b.ondragstart=e=>{dr=e.target.closest('.ch')};b.ondragover=e=>e.preventDefault();b.ondrop=e=>{const z=e.target.closest('.z');if(z&&dr){z.querySelector('.zz').append(dr);dr=null}};
+return()=>P.children.length?null:[...b.querySelectorAll('.z')].every((z,i)=>[...z.querySelectorAll('.ch')].every(c=>+c.dataset.z==i))}}
+function end(){const m=L.length*10,p=Math.round(pts/m*100),n=p>=90?3:p>=70?2:p>=50?1:0;boom(44);app.innerHTML=`<div class="hero">${['🧗','🥉','🥈','🏆'][n]}</div><h1>Mission terminée !</h1><p class="big">${pts} / ${m} points</p><p class="big">${'⭐'.repeat(n)||'💪'}</p><p>${LN[lv]} : ${p} %. ${p>=90?"Expert·e en météo et en mouvement !":p>=70?"Très bien, tu maîtrises l'essentiel.":p>=50?"C'est correct. Revois les points où tu as hésité.":"Relis tes fiches PC 1, PC 2 et PC 3, puis recommence."}</p>${S.map(t=>{const T=L.filter(x=>x.s==t).length*10,v=T?Math.round((sc[t.n]||0)/T*100):0;return`<p>${t.g} ${t.n} : <b>${v} %</b><span class="bar2"><i style="width:${v}%"></i></span></p>`}).join('')}<button class="g" onclick="home()">Rejouer</button>`;try{localStorage.removeItem(KEY)}catch(e){}}
+home();
+</script>
+</body>
+</html>
